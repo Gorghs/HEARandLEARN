@@ -8,7 +8,7 @@ In this page, we list the awards and recognition that the technology behind sign
 
 [^emnlp2024-award]: sign.mt. 2024. [Twitter Post](https://x.com/signmt_/status/1857181686045540787).
 
-- Dr. Amit Moryossef (among others) received the `SwissNLP Award` for his "outstanding contribution to Sign Language Translation in Switzerland"[^swissnlp2024-award].
+- karthick (among others) received the `SwissNLP Award` for his "outstanding contribution to Sign Language Translation in Switzerland"[^swissnlp2024-award].
 
 [^swissnlp2024-award]: SwissNLP. 2024. [SwissNLP Award](https://swissnlp.org/home/activities/swissnlp-award/).
 
@@ -22,12 +22,12 @@ In this page, we list the awards and recognition that the technology behind sign
 
 ## 2023
 
-- Dr. Amit Moryossef (among others) received the `ACL Outstanding Paper Award` for "Considerations for Meaningful Sign Language Machine Translation"[^acl2023-award].
+- karthick (among others) received the `ACL Outstanding Paper Award` for "Considerations for Meaningful Sign Language Machine Translation"[^acl2023-award].
 
 [^acl2023-award]: Müller et al. 2023. [Considerations for Meaningful Sign Language Machine Translation](https://aclanthology.org/2023.acl-short.60/).
 
 ## 2021
 
-- Dr. Amit Moryossef (among others) received the `ACL Best Theme Paper Award` for "Including Signed Languages in Natural Language Processing"[^acl2021-award].
+- karthick (among others) received the `ACL Best Theme Paper Award` for "Including Signed Languages in Natural Language Processing"[^acl2021-award].
 
 [^acl2021-award]: Yin et al. 2021. [Including Signed Languages in Natural Language Processing](https://aclanthology.org/2021.acl-long.570/).

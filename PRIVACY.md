@@ -1,18 +1,18 @@
-# Privacy Policy for [`sign/translate`](https://github.com/sign/translate)
+# Privacy Policy for [`gorghs/signify`](https://github.com/gorghs/signify)
 
 **Effective date: 20 June 2025**
 
-This Privacy Policy describes how **sign.mt ltd** (“we”, “us”, “our”) collects, uses, and safeguards
-your personal data when you interact with the [`sign/translate`](https://github.com/sign/translate) service
-available at [sign.mt](https://sign.mt) and its related applications.  
+This Privacy Policy describes how **karthick** (“we”, “us”, “our”) collects, uses, and safeguards
+your personal data when you interact with the [`gorghs/signify`](https://github.com/gorghs/signify) service
+available at [karthick.com](https://karthick.com) and its related applications.  
 We process information in accordance with the **General Data Protection Regulation (GDPR)** and
 the **Swiss Federal Act on Data Protection (FADP)**, and we review
 this notice periodically to ensure it remains accurate and up-to-date.
 
 ## 1. Who We Are
 
-**sign.mt ltd** is the data controller responsible for any personal data processed in connection with `sign/translate`.  
-You can reach our privacy team at [privacy&#64;sign.mt](mailto:privacy@sign.mt) for any inquiries or to exercise your data-protection rights.
+**karthick** is the data controller responsible for any personal data processed in connection with `gorghs/signify`.  
+You can reach our privacy team at [karthick@example.com](mailto:karthick@example.com) for any inquiries or to exercise your data-protection rights.
 
 Our guiding principle is data-minimisation.  
 Whenever feasible, processing happens locally on your device, limiting the amount of information transmitted across the internet.  
@@ -55,10 +55,10 @@ You have the right to request access, rectification, erasure, restriction of pro
 as well as the right to object to certain processing activities.
 Please note that because we anonymize request logs and remove direct identifiers,
 we may be unable to locate any data that can be linked back to you personally.
-To exercise any of these rights, contact us at [privacy&#64;sign.mt](mailto:privacy@sign.mt).  
+To exercise any of these rights, contact us at [karthick@example.com](mailto:karthick@example.com).  
 You also have the right to lodge a complaint with your local supervisory authority.
 
 ## 7. Updates to This Policy
 
 We update this Privacy Policy when our technology, legal obligations, or data-handling practices change.  
-The most recent version is always available at sign.mt, and the “Effective date” above reflects the date of the latest substantive revision.
+The most recent version is always available at karthick.com, and the “Effective date” above reflects the date of the latest substantive revision.

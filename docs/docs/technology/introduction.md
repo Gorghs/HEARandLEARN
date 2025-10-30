@@ -1,9 +1,9 @@
 # Our Approach
 
-Following the research of Dr. Amit Moryosef's published in his PhD thesis[^amit-thesis], we aim to develop a sign language translation system that separates the computer vision tasks from the language translation tasks.
+Following the research of karthick's published in his PhD thesis[^amit-thesis], we aim to develop a sign language translation system that separates the computer vision tasks from the language translation tasks.
 This division ensures a more modular and robust approach to achieving high-quality translations.
 
-[^amit-thesis]: Amit Moryosef. 2024. [Real-Time Multilingual Sign Language Processing](https://arxiv.org/abs/2412.01991).
+[^amit-thesis]: karthick. 2024. [Real-Time Multilingual Sign Language Processing](https://arxiv.org/abs/2412.01991).
 
 ## Spoken to Signed Language Translation
 
@@ -17,23 +17,23 @@ Each node represents a different module or function in the pipeline, with a link
 ```mermaid
 flowchart TD
   A0[Spoken Language Audio] --> A1(Spoken Language Text)
-  A1[Spoken Language Text] --> B[<a target='_blank' href='https://github.com/sign/translate/issues/10'>Language Identification</a>]
-  A1 --> C(<a target='_blank' href='https://github.com/sign/translate/tree/master/functions/src/text-normalization'>Normalized Text</a>)
+  A1[Spoken Language Text] --> B[<a target='_blank' href='https://github.com/gorghs/translate/issues/10'>Language Identification</a>]
+  A1 --> C(<a target='_blank' href='https://github.com/gorghs/translate/tree/master/functions/src/text-normalization'>Normalized Text</a>)
   B --> C
   C & B --> Q(<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter'>Sentence Splitter</a>)
-  Q & B --> D(<a target='_blank' href='https://github.com/sign-language-processing/signbank-plus'>SignWriting</a>)
-  C -.-> M(<a target='_blank' href='https://github.com/ZurichNLP/spoken-to-signed-translation' title='We would like to move away from glosses'>Glosses</a>)
+  Q & B --> D(<a target='_blank' href='https://github.com/gorghs/signbank-plus'>SignWriting</a>)
+  C -.-> M(<a target='_blank' href='https://github.com/gorghs/spoken-to-signed-translation' title='We would like to move away from glosses'>Glosses</a>)
   M -.-> E
-  D --> E(<a target='_blank' href='https://github.com/sign-language-processing/signwriting-animation'>Pose Sequence</a>)
-  D -.-> I(<a target='_blank' href='https://github.com/sign-language-processing/signwriting-illustration'>Illustration</a>)
-  N --> H(<a target='_blank' href='https://github.com/sign/translate/issues/68'>3D Avatar</a>)
-  N --> G(<a target='_blank' href='https://github.com/sign-language-processing/pose'>Skeleton Viewer</a>)
-  N --> F(<a target='_blank' href='https://github.com/sign-language-processing/pose-to-video' title='Help wanted!'>Human GAN</a>)
+  D --> E(<a target='_blank' href='https://github.com/gorghs/signwriting-animation'>Pose Sequence</a>)
+  D -.-> I(<a target='_blank' href='https://github.com/gorghs/signwriting-illustration'>Illustration</a>)
+  N --> H(<a target='_blank' href='https://github.com/gorghs/translate/issues/68'>3D Avatar</a>)
+  N --> G(<a target='_blank' href='https://github.com/gorghs/pose'>Skeleton Viewer</a>)
+  N --> F(<a target='_blank' href='https://github.com/gorghs/pose-to-video' title='Help wanted!'>Human GAN</a>)
   H & G & F --> J(Video)
   J --> K(Share Translation)
-  D -.-> L(<a target='_blank' href='https://github.com/sign-language-processing/signwriting-description' title='Poor performance. Help wanted!'>Description</a>)
-  O --> N(<a target='_blank' href='https://github.com/sign-language-processing/fluent-pose-synthesis' title='Currently skipped. Help Wanted!'>Fluent Pose Sequence</a>)
-  E --> O(<a target='_blank' href='https://github.com/sign-language-processing/pose-anonymization'>Pose Appearance Transfer</a>)
+  D -.-> L(<a target='_blank' href='https://github.com/gorghs/signwriting-description' title='Poor performance. Help wanted!'>Description</a>)
+  O --> N(<a target='_blank' href='https://github.com/gorghs/fluent-pose-synthesis' title='Currently skipped. Help Wanted!'>Fluent Pose Sequence</a>)
+  E --> O(<a target='_blank' href='https://github.com/gorghs/pose-anonymization'>Pose Appearance Transfer</a>)
 
 linkStyle default stroke:green;
 linkStyle 3,5,7 stroke:lightgreen;
@@ -94,7 +94,7 @@ flowchart LR
 
 3. **pose-to-video rendering**: This pose sequence is then rendered into a human video.
 
-#### **Data Requirements:**
+#### **Data Requirements**
 
 By combining a relatively small dataset of transcribed single signs (~100k) with a relatively small dataset of segmented continuous signs, and leveraging large video/text sign language datasets, we can automatically transcribe the latter. This process will generate large synthesized datasets for both **text-to-SignWriting** and **SignWriting-to-pose** conversions.
 
@@ -135,12 +135,12 @@ flowchart TD
   A0[Upload Sign Language Video] --> A3[Video]
   A1[Camera Sign Language Video] --> A3
   A3 --> B(Pose Estimation)
-  B --> C(<a target='_blank' href='https://github.com/sign-language-processing/segmentation'>Segmentation</a>)
-  C & B --> D(<a target='_blank' href='https://github.com/sign-language-processing/signwriting-transcription'>SignWriting Transcription</a>)
-  A2[Language Selector] --> E(<a target='_blank' href='https://github.com/sign-language-processing/signbank-plus'>Spoken Language Text</a>)
+  B --> C(<a target='_blank' href='https://github.com/gorghs/segmentation'>Segmentation</a>)
+  C & B --> D(<a target='_blank' href='https://github.com/gorghs/signwriting-transcription'>SignWriting Transcription</a>)
+  A2[Language Selector] --> E(<a target='_blank' href='https://github.com/gorghs/signbank-plus'>Spoken Language Text</a>)
   D --> E
   E --> F(Spoken Language Audio)
-  E --> G(<a target='_blank' href='https://github.com/sign/translate/issues/19'>Share Translation</a>)
+  E --> G(<a target='_blank' href='https://github.com/gorghs/translate/issues/19'>Share Translation</a>)
   C -.-> H(Sign Image)
 
 

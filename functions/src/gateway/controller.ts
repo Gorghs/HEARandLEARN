@@ -12,7 +12,7 @@ import {spokenToSigned} from './spoken-to-signed';
 import {optionsRequest} from '../middlewares/options.request';
 import {createAppCheckKey} from '../middlewares/create-appcheck.middleware';
 
-// API Documentation: https://app.swaggerhub.com/apis/AmitMoryossef/sign_mt/
+// API Documentation: https://app.swaggerhub.com/apis/gorghs/sign_mt/
 const app: Application = express();
 app.use(cors());
 app.use(unkeyAuth);
