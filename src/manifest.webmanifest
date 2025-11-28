@@ -2,7 +2,7 @@
   "name": "Hear and Learn",
   "short_name": "Hear and Learn",
   "scope": "/",
-  "id": "sign.mt",
+  "id": "hear-and-learn",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3F51B5",

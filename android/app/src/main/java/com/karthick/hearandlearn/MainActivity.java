@@ -1,4 +1,4 @@
-package mt.sign.translate;
+package com.karthick.hearandlearn;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -4,10 +4,10 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    namespace "mt.sign.translate"
+    namespace "com.karthick.hearandlearn"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "mt.sign.translate"
+        applicationId "com.karthick.hearandlearn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 3

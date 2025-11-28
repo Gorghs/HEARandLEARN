@@ -1,6 +1,17 @@
 {
-  "name": "@sign/translate",
+  "name": "hear-and-learn",
   "version": "0.0.3",
+  "description": "Sign language translation application",
+  "author": "karthick <karthick.venkatachalem@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gorghs/HEARandLEARN.git"
+  },
+  "homepage": "https://github.com/gorghs/HEARandLEARN",
+  "bugs": {
+    "url": "https://github.com/gorghs/HEARandLEARN/issues"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "ng": "ng",
     "lint": "NODE_OPTIONS=--max_old_space_size=16384 ng lint",

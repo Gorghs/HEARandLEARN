@@ -1,4 +1,4 @@
-app_identifier("mt.sign.translate") # The bundle identifier of your app
+app_identifier("com.karthick.hearandlearn") # The bundle identifier of your app
 apple_id("karthick@example.com") # Your Apple email address
 
 itc_team_id("125279535") # App Store Connect Team ID

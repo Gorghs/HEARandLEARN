@@ -16,7 +16,7 @@ Please review the following license terms carefully to determine which license a
 
 ## Free license
 
-Copyright (c) 2022 sign.mt ltd
+Copyright (c) 2025 karthick
 
 ### [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 

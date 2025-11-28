@@ -13,7 +13,7 @@ lane :beta do
     groups: "developoers"
   )
   upload_to_play_store(
-  package_name: "mt.sign.translate",
+  package_name: "com.karthick.hearandlearn",
   track: 'beta',
   skip_upload_apk: true,
   skip_upload_changelogs: true

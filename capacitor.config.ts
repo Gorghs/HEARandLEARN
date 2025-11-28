@@ -3,8 +3,8 @@ import {networkInterfaces} from 'os';
 import {env} from './env';
 
 const config: CapacitorConfig = {
-  appId: 'mt.sign.translate',
-  appName: 'sign',
+  appId: 'com.karthick.hearandlearn',
+  appName: 'Hear and Learn',
   webDir: 'dist/sign-translate/browser',
   server: getServer(),
   plugins: {
