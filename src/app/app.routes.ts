@@ -34,6 +34,15 @@ export const routes: Routes = [
         path: 'translate',
         redirectTo: '',
       },
+      {
+        path: 'video-to-sign',
+        loadComponent: () =>
+          import('./pages/translate/video-to-sign/video-to-sign.component').then(m => m.VideoToSignComponent),
+        providers: [
+          provideStates([TranslateState]),
+          {provide: LanguageDetectionService, useClass: MediaPipeLanguageDetectionService},
+        ],
+      },
       // {
       //   path: 'converse',
       //   loadChildren: () => import('./tab2/tab2.module').then(m => m.Tab2PageModule),

@@ -7,6 +7,7 @@ import {takeUntil, tap} from 'rxjs/operators';
 import {
   CopySignedLanguageVideo,
   DownloadSignedLanguageVideo,
+  PoseLoadingFailed,
   ShareSignedLanguageVideo,
 } from '../../../../modules/translate/translate.actions';
 import {BaseComponent} from '../../../../components/base/base.component';
@@ -131,5 +132,9 @@ export class SignedLanguageOutputComponent extends BaseComponent implements OnIn
       video.disableRemotePlayback = true; // Disable AirPlay, must be used for ManagedMediaSource
       video.srcObject = await this.createVideoMediaSource();
     }
+  }
+
+  onPoseError(): void {
+    this.store.dispatch(new PoseLoadingFailed());
   }
 }

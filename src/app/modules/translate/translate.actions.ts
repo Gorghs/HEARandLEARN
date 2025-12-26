@@ -76,3 +76,7 @@ export class DescribeSignWritingSign {
 
   constructor(public fsw: string) {}
 }
+
+export class PoseLoadingFailed {
+  static readonly type = '[Translate] Pose Loading Failed';
+}

@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, HostBinding, inject, Input, viewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  inject,
+  Inject,
+  Input,
+  PLATFORM_ID,
+  viewChild,
+} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {combineLatest, firstValueFrom} from 'rxjs';
 import {VideoSettings, VideoStateModel} from '../../core/modules/ngxs/store/video/video.state';
@@ -16,7 +26,7 @@ import {IonIcon} from '@ionic/angular/standalone';
 import {VideoControlsComponent} from './video-controls/video-controls.component';
 import {addIcons} from 'ionicons';
 import {playCircleOutline} from 'ionicons/icons';
-import {AsyncPipe} from '@angular/common';
+import {isPlatformBrowser, AsyncPipe} from '@angular/common';
 import {TranslocoDirective, TranslocoPipe} from '@jsverse/transloco';
 import {AnimationModule} from '../animation/animation.module';
 
@@ -55,36 +65,40 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   videoEnded = false;
 
-  fpsStats = new Stats();
-  signingStats = new Stats();
+  fpsStats: Stats;
+  signingStats: Stats;
 
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {
     super();
 
-    if ('document' in globalThis) {
+    if (isPlatformBrowser(this.platformId)) {
       this.appRootEl = document.querySelector('ion-app') ?? document.body;
+      this.fpsStats = new Stats();
+      this.signingStats = new Stats();
     }
 
     addIcons({playCircleOutline});
   }
 
   ngAfterViewInit(): void {
-    const videoEl = this.videoEl();
-    this.setCamera();
-    this.setStats();
-    this.trackPose();
+    if (isPlatformBrowser(this.platformId)) {
+      const videoEl = this.videoEl();
+      this.setCamera();
+      this.setStats();
+      this.trackPose();
 
-    this.canvasCtx = this.canvasEl().nativeElement.getContext('2d');
-    this.preloadSignWritingFont();
-    this.drawChanges();
+      this.canvasCtx = this.canvasEl().nativeElement.getContext('2d');
+      this.preloadSignWritingFont();
+      this.drawChanges();
 
-    this.preloadPoseEstimationModel();
-    videoEl.nativeElement.addEventListener('loadeddata', this.appLoop.bind(this));
-    videoEl.nativeElement.addEventListener('ended', () => (this.videoEnded = true));
+      this.preloadPoseEstimationModel();
+      videoEl.nativeElement.addEventListener('loadeddata', this.appLoop.bind(this));
+      videoEl.nativeElement.addEventListener('ended', () => (this.videoEnded = true));
 
-    const resizeObserver = new ResizeObserver(this.scaleCanvas.bind(this));
-    resizeObserver.observe(this.elementRef.nativeElement);
-    resizeObserver.observe(this.appRootEl); // Catch changes when canvas becomes bigger then screen
+      const resizeObserver = new ResizeObserver(this.scaleCanvas.bind(this));
+      resizeObserver.observe(this.elementRef.nativeElement);
+      resizeObserver.observe(this.appRootEl); // Catch changes when canvas becomes bigger then screen
+    }
   }
 
   async appLoop(): Promise<void> {
@@ -167,17 +181,19 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   }
 
   trackPose(): void {
-    this.poseState$
-      .pipe(
-        map(state => state.pose),
-        filter(Boolean),
-        tap(() => {
-          this.fpsStats.end(); // End previous frame time
-          this.fpsStats.begin(); // Start new frame time
-        }),
-        takeUntil(this.ngUnsubscribe)
-      )
-      .subscribe();
+    if (isPlatformBrowser(this.platformId)) {
+      this.poseState$
+        .pipe(
+          map(state => state.pose),
+          filter(Boolean),
+          tap(() => {
+            this.fpsStats.end(); // End previous frame time
+            this.fpsStats.begin(); // Start new frame time
+          }),
+          takeUntil(this.ngUnsubscribe)
+        )
+        .subscribe();
+    }
   }
 
   preloadSignWritingFont(): void {
@@ -224,25 +240,27 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   }
 
   setStats(): void {
-    this.fpsStats.showPanel(0);
-    this.fpsStats.dom.style.position = 'absolute';
-    this.statsEl().nativeElement.appendChild(this.fpsStats.dom);
+    if (isPlatformBrowser(this.platformId)) {
+      this.fpsStats.showPanel(0);
+      this.fpsStats.dom.style.position = 'absolute';
+      this.statsEl().nativeElement.appendChild(this.fpsStats.dom);
 
-    // TODO this on change of input property
-    if (!this.displayFps) {
-      this.fpsStats.dom.style.display = 'none';
+      // TODO this on change of input property
+      if (!this.displayFps) {
+        this.fpsStats.dom.style.display = 'none';
+      }
+
+      // Sign detection panel
+      const signingPanel = new Stats.Panel('Signing', '#ff8', '#221');
+      this.signingStats.dom.innerHTML = '';
+      this.signingStats.addPanel(signingPanel);
+      this.signingStats.showPanel(0);
+      this.signingStats.dom.style.position = 'absolute';
+      this.signingStats.dom.style.left = '80px';
+      this.statsEl().nativeElement.appendChild(this.signingStats.dom);
+
+      this.setDetectorListener(signingPanel);
     }
-
-    // Sign detection panel
-    const signingPanel = new Stats.Panel('Signing', '#ff8', '#221');
-    this.signingStats.dom.innerHTML = '';
-    this.signingStats.addPanel(signingPanel);
-    this.signingStats.showPanel(0);
-    this.signingStats.dom.style.position = 'absolute';
-    this.signingStats.dom.style.left = '80px';
-    this.statsEl().nativeElement.appendChild(this.signingStats.dom);
-
-    this.setDetectorListener(signingPanel);
   }
 
   setDetectorListener(panel: Stats.Panel): void {

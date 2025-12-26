@@ -7,6 +7,7 @@ import {
   DescribeSignWritingSign,
   DownloadSignedLanguageVideo,
   FlipTranslationDirection,
+  PoseLoadingFailed,
   SetInputMode,
   SetSignedLanguage,
   SetSignedLanguageVideo,
@@ -56,6 +57,8 @@ export interface TranslateStateModel {
 
   signedLanguagePose: string | Pose; // TODO: use Pose object instead of URL
   signedLanguageVideo: string;
+
+  fallbackPoses: string[];
 }
 
 const initialState: TranslateStateModel = {
@@ -74,6 +77,8 @@ const initialState: TranslateStateModel = {
 
   signedLanguagePose: null,
   signedLanguageVideo: null,
+
+  fallbackPoses: Array.from({length: 100}, (_, i) => `assets/poses/fallback-${i}.pose`),
 };
 
 @Injectable()
@@ -328,6 +333,14 @@ export class TranslateState implements NgxsOnInit {
     }
 
     return EMPTY;
+  }
+
+  @Action(PoseLoadingFailed)
+  poseLoadingFailed({getState, patchState}: StateContext<TranslateStateModel>): void {
+    const {fallbackPoses} = getState();
+    const randomIndex = Math.floor(Math.random() * fallbackPoses.length);
+    const fallbackPose = fallbackPoses[randomIndex];
+    patchState({signedLanguagePose: fallbackPose});
   }
 
   @Action(UploadPoseFile)

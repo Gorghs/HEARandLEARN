@@ -19,26 +19,27 @@ export class I18NLanguageSelectorComponent {
   languages = this.groupLanguages();
 
   private groupLanguages() {
-    const languageGroups = [];
-    let lastGroup = {label: 'A', languages: []};
-    let didCrossZ = false;
+    const groups: {[key: string]: {key: string; value: string}[]} = {};
     for (const language of SITE_LANGUAGES) {
-      let label = language.value.charAt(0);
-      const isAZ = label.charCodeAt(0) > 64 && label.charCodeAt(0) < 91;
-      if (!isAZ || didCrossZ) {
-        didCrossZ = true;
+      let label = language.value.charAt(0).toUpperCase();
+      if (label < 'A' || label > 'Z') {
         label = 'OTHER';
       }
-
-      if (label !== lastGroup.label) {
-        languageGroups.push(lastGroup);
-        lastGroup = {label, languages: []};
+      if (!groups[label]) {
+        groups[label] = [];
       }
-      lastGroup.languages.push(language);
+      groups[label].push(language);
     }
 
-    languageGroups.push(lastGroup);
-    return languageGroups;
+    const languageGroups = Object.keys(groups).map(key => {
+      return {label: key, languages: groups[key]};
+    });
+
+    return languageGroups.sort((a, b) => {
+      if (a.label === 'OTHER') return 1;
+      if (b.label === 'OTHER') return -1;
+      return a.label.localeCompare(b.label);
+    });
   }
 
   async change(event: Event) {

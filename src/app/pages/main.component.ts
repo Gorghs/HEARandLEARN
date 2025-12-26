@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter, map} from 'rxjs/operators';
 import {IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs} from '@ionic/angular/standalone';
-import {home, person} from 'ionicons/icons';
+import {home, person, videocam} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 
 @Component({
@@ -19,6 +19,6 @@ export class MainComponent {
   );
 
   constructor() {
-    addIcons({home, person});
+    addIcons({home, person, videocam});
   }
 }

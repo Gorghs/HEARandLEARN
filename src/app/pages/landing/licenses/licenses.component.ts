@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {AssetState} from '../../../core/services/assets/assets.service';
@@ -7,7 +7,7 @@ import {MatIconButton} from '@angular/material/button';
 import {IonIcon} from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import {chevronDownOutline, chevronForwardOutline} from 'ionicons/icons';
-import {NgTemplateOutlet} from '@angular/common';
+import {isPlatformBrowser, NgTemplateOutlet} from '@angular/common';
 import {TranslocoPipe} from '@jsverse/transloco';
 
 interface PackagesParent {
@@ -32,6 +32,7 @@ type Node = PackagesParent | PackageLicense;
 })
 export class LicensesComponent implements OnInit {
   private httpClient = inject(HttpClient);
+  private platformId = inject(PLATFORM_ID);
 
   treeControl = new NestedTreeControl<Node>((node: any) => node.children);
   filesTree = new MatTreeNestedDataSource<Node>();
@@ -41,9 +42,11 @@ export class LicensesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.httpClient.get('/licenses.json').subscribe((licenses: any) => {
-      this.updateTree(licenses);
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this.httpClient.get('/licenses.json').subscribe((licenses: any) => {
+        this.updateTree(licenses);
+      });
+    }
   }
 
   updateTree(packages: {[key: string]: any}) {

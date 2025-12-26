@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {BaseComponent} from '../../components/base/base.component';
 import {filter, takeUntil, tap} from 'rxjs/operators';
@@ -10,6 +10,7 @@ import {SettingsComponent} from '../../modules/settings/settings/settings.compon
 import {earOutline} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {VideoModule} from '../../components/video/video.module';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-playground',
@@ -31,6 +32,7 @@ import {VideoModule} from '../../components/video/video.module';
 export class PlaygroundComponent extends BaseComponent implements OnInit {
   private store = inject(Store);
   private translocoService = inject(TranslocoService);
+  private platformId = inject(PLATFORM_ID);
 
   receiveVideo$: Observable<boolean>;
 
@@ -43,12 +45,14 @@ export class PlaygroundComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.translocoService.events$
-      .pipe(
-        tap(() => (document.title = this.translocoService.translate('playground.title'))),
-        takeUntil(this.ngUnsubscribe)
-      )
-      .subscribe();
+    if (isPlatformBrowser(this.platformId)) {
+      this.translocoService.events$
+        .pipe(
+          tap(() => (document.title = this.translocoService.translate('playground.title'))),
+          takeUntil(this.ngUnsubscribe)
+        )
+        .subscribe();
+    }
 
     this.receiveVideo$
       .pipe(
